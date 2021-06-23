@@ -56,7 +56,7 @@ class Parser:
             exc_value: Optional[BaseException],
             exc_traceback: Optional[TracebackType],
     ) -> None:
-        pass
+        self.file.close()
 
     def _remove_comments(self, line: AnyStr) -> AnyStr:
         comment: re.Match = re.search(
