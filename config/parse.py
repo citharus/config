@@ -15,7 +15,8 @@
 from __future__ import annotations
 
 import re
-from typing import IO, MutableMapping, Tuple, Optional
+from types import TracebackType
+from typing import IO, MutableMapping, Tuple, Optional, Type
 
 
 class Parser:
@@ -41,12 +42,21 @@ class Parser:
         self._comment_prefixes: Tuple[str] = comment_prefixes
         self._inline_comments: bool = inline_comments
 
+    def _remove_comments(self, line: str) -> str:
+        comment: re.Match = re.search(
+            rf"({'|'.join(self._comment_prefixes)})",
+            line,
+        )
+        if comment:
+            return line[:comment.start()]
+        return line
+
     def parse(self, file: IO) -> MutableMapping:
         config: dict = self._dict_type()
         current: Optional[MutableMapping] = None
 
         for i, line in enumerate(file):
-            line = line.strip()
+            line = self._remove_comments(line).strip()
 
             section = self._SECTION.match(line)
             option = self._OPTION.match(line)
