@@ -32,11 +32,14 @@ class Parser:
 
     def __init__(
             self,
+            file: IO,
             dict_type: dict = dict,
+            *,
             delimiters: Tuple[str] = ('=',),
             comment_prefixes: Tuple[str] = ('#',),
             inline_comments: bool = True,
     ) -> None:
+        self.file: IO = file
         self._dict_type: dict = dict_type
         self._delimiters: Tuple[str] = delimiters
         self._comment_prefixes: Tuple[str] = comment_prefixes
