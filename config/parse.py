@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import re
 from types import TracebackType
-from typing import IO, MutableMapping, Tuple, Optional, Type
+from typing import IO, MutableMapping, Tuple, Optional, Type, AnyStr
 
 
 class Parser:
@@ -53,7 +53,7 @@ class Parser:
     ) -> None:
         pass
 
-    def _remove_comments(self, line: str) -> str:
+    def _remove_comments(self, line: AnyStr) -> AnyStr:
         comment: re.Match = re.search(
             rf"({'|'.join(self._comment_prefixes)})",
             line,
@@ -67,7 +67,7 @@ class Parser:
         current: Optional[MutableMapping] = None
 
         for i, line in enumerate(file):
-            line = self._remove_comments(line).strip()
+            line: AnyStr = self._remove_comments(line).strip()
 
             section = self._SECTION.match(line)
             option = self._OPTION.match(line)
