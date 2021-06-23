@@ -47,8 +47,8 @@ class Parser:
         self._comment_prefixes: Tuple[str] = comment_prefixes
         self._inline_comments: bool = inline_comments
 
-    def __enter__(self) -> Parser:
-        return self
+    def __enter__(self) -> dict:
+        return self.to_dict()
 
     def __exit__(
             self,
