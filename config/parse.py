@@ -72,8 +72,8 @@ class Parser:
         for i, line in enumerate(self.file if file is None else file):
             line: AnyStr = self._remove_comments(line).strip()
 
-            section = self._SECTION.match(line)
-            option = self._OPTION.match(line)
+            section: re.Match = self._SECTION.match(line)
+            option: re.Match = self._OPTION.match(line)
 
             if section:
                 name = section.group("name")
