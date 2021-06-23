@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import re
 from types import TracebackType
-from typing import IO, MutableMapping, Tuple, Optional, Type, AnyStr, Any
+from typing import IO, Tuple, Optional, Type, AnyStr, Any
 
 
 class Parser:
@@ -67,9 +67,9 @@ class Parser:
             return line[:comment.start()]
         return line
 
-    def to_dict(self, file: Optional[IO] = None) -> MutableMapping:
+    def to_dict(self, file: Optional[IO] = None) -> dict:
         config: dict = self._default_dict()
-        current: Optional[MutableMapping] = None
+        current: Optional[dict] = None
 
         for i, line in enumerate(self.file if file is None else file):
             line: AnyStr = self._remove_comments(line).strip()
