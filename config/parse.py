@@ -42,6 +42,17 @@ class Parser:
         self._comment_prefixes: Tuple[str] = comment_prefixes
         self._inline_comments: bool = inline_comments
 
+    def __enter__(self) -> Parser:
+        return self
+
+    def __exit__(
+            self,
+            exc_type: Optional[Type[BaseException]],
+            exc_value: Optional[BaseException],
+            exc_traceback: Optional[TracebackType],
+    ) -> None:
+        pass
+
     def _remove_comments(self, line: str) -> str:
         comment: re.Match = re.search(
             rf"({'|'.join(self._comment_prefixes)})",
