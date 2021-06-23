@@ -14,10 +14,21 @@
 
 from __future__ import annotations
 
-from typing import Tuple
+import re
+from typing import IO, MutableMapping, Tuple, Optional
 
 
 class Parser:
+    _SECTION: re.Pattern = re.compile(
+        r"\[(?P<name>[^]]+)\]",
+        re.VERBOSE,
+    )
+
+    _OPTION: re.Pattern = re.compile(
+        r"(?P<name>.*?)\s*(=)\s*(?P<value>.*)$",
+        re.VERBOSE,
+    )
+
     def __init__(
             self,
             dict_type: dict = dict,
@@ -29,3 +40,31 @@ class Parser:
         self._delimiters: Tuple[str] = delimiters
         self._comment_prefixes: Tuple[str] = comment_prefixes
         self._inline_comments: bool = inline_comments
+
+    def parse(self, file: IO) -> MutableMapping:
+        config: dict = self._dict_type()
+        current: Optional[MutableMapping] = None
+
+        for i, line in enumerate(file):
+            line = line.strip()
+
+            section = self._SECTION.match(line)
+            option = self._OPTION.match(line)
+
+            if section:
+                name = section.group("name")
+                if name in config:
+                    current = config[name]
+                else:
+                    current = self._dict_type()
+                    config[name] = current
+
+            elif option:
+                name, value = option.group("name", "value")
+                if value is None:
+                    current[name] = None
+                else:
+                    value = value.strip()
+                    current[name] = value
+
+        return config
