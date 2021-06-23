@@ -18,17 +18,17 @@ import re
 from types import TracebackType
 from typing import IO, Tuple, Optional, Type, AnyStr, Any
 
-__all__: list[str] = ["Parser"]
+__all__: list[str] = ['Parser']
 
 
 class Parser:
     _SECTION: re.Pattern = re.compile(
-        r"\[(?P<name>[^]]+)\]",
+        r'\[(?P<name>[^]]+)\]',
         re.VERBOSE,
     )
 
     _OPTION: re.Pattern = re.compile(
-        r"(?P<name>.*?)\s*(=)\s*(?P<value>.*)$",
+        r'(?P<name>.*?)\s*(=)\s*(?P<value>.*)$',
         re.VERBOSE,
     )
 
@@ -62,7 +62,7 @@ class Parser:
 
     def _remove_comments(self, line: AnyStr) -> AnyStr:
         comment: re.Match = re.search(
-            rf"({'|'.join(self._comment_prefixes)})",
+            rf'({"|".join(self._comment_prefixes)})',
             line,
         )
         if comment:
@@ -80,7 +80,7 @@ class Parser:
             option: re.Match = self._OPTION.match(line)
 
             if section:
-                name = section.group("name")
+                name = section.group('name')
                 if name in config:
                     current = config[name]
                 else:
@@ -88,7 +88,7 @@ class Parser:
                     config[name] = current
 
             elif option:
-                name, value = option.group("name", "value")
+                name, value = option.group('name', 'value')
                 if not value:
                     current[name] = self._default_none
                 else:
