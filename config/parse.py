@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import re
 from types import TracebackType
-from typing import IO, MutableMapping, Tuple, Optional, Type, AnyStr
+from typing import IO, MutableMapping, Tuple, Optional, Type, AnyStr, Any
 
 
 class Parser:
@@ -34,6 +34,7 @@ class Parser:
             self,
             file: Optional[IO] = None,
             default_dict: Type[dict] = dict,
+            default_none: Optional[Any] = None,
             *,
             delimiters: Tuple[str] = ('=',),
             comment_prefixes: Tuple[str] = ('#',),
@@ -41,6 +42,7 @@ class Parser:
     ) -> None:
         self.file: Optional[IO] = file
         self._default_dict: Type[dict] = default_dict
+        self._default_none: Optional[Any] = default_none
         self._delimiters: Tuple[str] = delimiters
         self._comment_prefixes: Tuple[str] = comment_prefixes
         self._inline_comments: bool = inline_comments
@@ -86,7 +88,7 @@ class Parser:
             elif option:
                 name, value = option.group("name", "value")
                 if not value:
-                    current[name] = None
+                    current[name] = self._default_none
                 else:
                     value = value.strip()
                     current[name] = value
