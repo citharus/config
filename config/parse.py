@@ -85,7 +85,7 @@ class Parser:
 
             elif option:
                 name, value = option.group("name", "value")
-                if value is None:
+                if not value:
                     current[name] = None
                 else:
                     value = value.strip()
