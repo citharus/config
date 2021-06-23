@@ -12,5 +12,12 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+__title__ = 'config'
+__author__ = 'citharus'
+__license__ = 'Apache License 2.0'
+__copyright__ = 'Copyright 2021-2021 citharus'
+__link__ = 'https://github.com/citharus/config'
+__version__ = '0.0.1a'
+
 from .parse import *
 from .types import *
