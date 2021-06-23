@@ -18,6 +18,8 @@ import re
 from types import TracebackType
 from typing import IO, Tuple, Optional, Type, AnyStr, Any
 
+__all__: list[str] = ["Parser"]
+
 
 class Parser:
     _SECTION: re.Pattern = re.compile(
