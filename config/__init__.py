@@ -19,5 +19,19 @@ __copyright__ = 'Copyright 2021-2021 citharus'
 __link__ = 'https://github.com/citharus/config'
 __version__ = '0.0.1a'
 
+from collections import namedtuple
+
 from .parse import *
 from .types import *
+
+VersionInfo = namedtuple(
+    'VersionInfo',
+    'major minor micro releaselevel serial',
+)
+version_info = VersionInfo(
+    major=0,
+    minor=0,
+    micro=1,
+    releaselevel='alpha',
+    serial=0,
+)
