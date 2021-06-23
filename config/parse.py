@@ -32,14 +32,14 @@ class Parser:
 
     def __init__(
             self,
-            file: IO,
+            file: Optional[IO] = None,
             dict_type: dict = dict,
             *,
             delimiters: Tuple[str] = ('=',),
             comment_prefixes: Tuple[str] = ('#',),
             inline_comments: bool = True,
     ) -> None:
-        self.file: IO = file
+        self.file: Optional[IO] = file
         self._dict_type: dict = dict_type
         self._delimiters: Tuple[str] = delimiters
         self._comment_prefixes: Tuple[str] = comment_prefixes
@@ -65,11 +65,11 @@ class Parser:
             return line[:comment.start()]
         return line
 
-    def parse(self, file: IO) -> MutableMapping:
+    def parse(self, file: Optional[IO] = None) -> MutableMapping:
         config: dict = self._dict_type()
         current: Optional[MutableMapping] = None
 
-        for i, line in enumerate(file):
+        for i, line in enumerate(self.file if file is None else file):
             line: AnyStr = self._remove_comments(line).strip()
 
             section = self._SECTION.match(line)
