@@ -65,7 +65,7 @@ class Parser:
             return line[:comment.start()]
         return line
 
-    def parse(self, file: Optional[IO] = None) -> MutableMapping:
+    def to_dict(self, file: Optional[IO] = None) -> MutableMapping:
         config: dict = self._default_dict()
         current: Optional[MutableMapping] = None
 
