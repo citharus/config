@@ -41,6 +41,9 @@ class INT(TYPE):
     def __init__(self, value: str) -> None:
         super(INT, self).__init__(value)
 
+    def convert(self) -> int:
+        return int(self.value)
+
 
 class FLOAT(TYPE):
     def __init__(self, value: str) -> None:
