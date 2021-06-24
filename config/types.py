@@ -15,7 +15,7 @@
 from __future__ import annotations
 
 import re
-from typing import AnyStr, Union, Type, Dict
+from typing import Type, Dict
 
 __all__: list[str] = ['INT', 'FLOAT', 'LIST']
 
@@ -33,24 +33,20 @@ def find_type(value: str) -> Type[TYPE]:
 
 
 class TYPE:
-    def __init__(
-            self,
-            pattern: AnyStr,
-            flags: Union[int, re.RegexFlag] = 0,
-    ) -> None:
-        self.pattern: re.Pattern = re.compile(pattern, flags)
+    def __init__(self, value: str) -> None:
+        self.value: str = value
 
 
 class INT(TYPE):
-    def __init__(self) -> None:
-        super(INT, self).__init__(r'\d+')
+    def __init__(self, value: str) -> None:
+        super(INT, self).__init__(value)
 
 
 class FLOAT(TYPE):
-    def __init__(self) -> None:
-        super(FLOAT, self).__init__(r'\d+\.\d+')
+    def __init__(self, value: str) -> None:
+        super(FLOAT, self).__init__(value)
 
 
 class LIST(TYPE):
-    def __init__(self) -> None:
-        super(LIST, self).__init__(r'\[.*?\]')
+    def __init__(self, value: str) -> None:
+        super(LIST, self).__init__(value)
