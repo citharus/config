@@ -22,7 +22,7 @@ __all__: list[str] = ['INT', 'FLOAT', 'LIST', 'convert']
 TYPES: Dict[str, re.Pattern] = {
     "INT": re.compile(r'\d+'),
     "FLOAT": re.compile(r'\d+\.\d+'),
-    "LIST": re.compile(r'\[.*?\]'),
+    "LIST": re.compile(r'\[(?P<items>.*?)\](?!\])'),
 }
 
 
