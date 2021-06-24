@@ -17,7 +17,7 @@ from __future__ import annotations
 import re
 from typing import Type, Dict
 
-__all__: list[str] = ['INT', 'FLOAT', 'LIST']
+__all__: list[str] = ['INT', 'FLOAT', 'LIST', 'convert']
 
 TYPES: Dict[str, re.Pattern] = {
     "INT": re.compile(r'\d+'),
