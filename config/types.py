@@ -15,7 +15,8 @@
 from __future__ import annotations
 
 import re
-from typing import Type, Dict
+from abc import ABC
+from typing import Type, Dict, Any
 
 __all__: list[str] = ['INT', 'FLOAT', 'LIST', 'convert']
 
@@ -32,9 +33,12 @@ def convert(value: str) -> Type[TYPE]:
             return eval(_type)(value).convert()
 
 
-class TYPE:
+class TYPE(ABC):
     def __init__(self, value: str) -> None:
         self.value: str = value
+
+    def convert(self) -> Any:
+        pass
 
 
 class INT(TYPE):
