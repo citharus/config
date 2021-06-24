@@ -19,6 +19,7 @@ from types import TracebackType
 from typing import IO, Tuple, Optional, Type, AnyStr, Any
 
 from config.types import convert
+from config.utils import remove_comments
 
 __all__: list[str] = ['Parser']
 
@@ -62,21 +63,15 @@ class Parser:
     ) -> None:
         self.file.close()
 
-    def _remove_comments(self, line: AnyStr) -> AnyStr:
-        comment: re.Match = re.search(
-            rf'({"|".join(self._comment_prefixes)})',
-            line,
-        )
-        if comment:
-            return line[:comment.start()]
-        return line
-
     def to_dict(self, file: Optional[IO] = None) -> dict:
         config: dict = self._default_dict()
         current: Optional[dict] = None
 
         for i, line in enumerate(self.file if file is None else file):
-            line: AnyStr = self._remove_comments(line).strip()
+            line: AnyStr = remove_comments(
+                line,
+                self._comment_prefixes,
+            ).strip()
 
             section: re.Match = self._SECTION.match(line)
             option: re.Match = self._OPTION.match(line)
