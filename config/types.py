@@ -28,8 +28,8 @@ TYPES: Dict[str, re.Pattern] = {
 
 def convert(value: str) -> Type[TYPE]:
     for _type, pattern in TYPES.items():
-        if pattern.fullmatch(value):
-            return eval(_type)(value)
+        if pattern.fullmatch(value.strip(" ")):
+            return eval(_type)(value).convert()
 
 
 class TYPE:
@@ -56,3 +56,6 @@ class FLOAT(TYPE):
 class LIST(TYPE):
     def __init__(self, value: str) -> None:
         super(LIST, self).__init__(value)
+
+    def convert(self) -> list:
+        return [convert(i) for i in self.value[1:-1].split(",")]
