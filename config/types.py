@@ -49,6 +49,9 @@ class FLOAT(TYPE):
     def __init__(self, value: str) -> None:
         super(FLOAT, self).__init__(value)
 
+    def convert(self) -> float:
+        return float(self.value)
+
 
 class LIST(TYPE):
     def __init__(self, value: str) -> None:
