@@ -18,6 +18,8 @@ import re
 from types import TracebackType
 from typing import IO, Tuple, Optional, Type, AnyStr, Any
 
+from config.types import convert
+
 __all__: list[str] = ['Parser']
 
 
@@ -92,7 +94,7 @@ class Parser:
                 if not value:
                     current[name] = self._default_none
                 else:
-                    value = value.strip()
+                    value = convert(value.strip())
                     current[name] = value
 
         return config
