@@ -26,7 +26,7 @@ TYPES: Dict[str, re.Pattern] = {
 }
 
 
-def find_type(value: str) -> Type[TYPE]:
+def convert(value: str) -> Type[TYPE]:
     for _type, pattern in TYPES.items():
         if pattern.fullmatch(value):
             return eval(_type)(value)
