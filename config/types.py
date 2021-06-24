@@ -1,7 +1,21 @@
+from __future__ import annotations
+
 import re
-from typing import AnyStr, Union
+from typing import AnyStr, Union, Type, Dict
 
 __all__: list[str] = ['INT', 'FLOAT', 'LIST']
+
+TYPES: Dict[str, re.Pattern] = {
+    "INT": re.compile(r'\d+'),
+    "FLOAT": re.compile(r'\d+\.\d+'),
+    "LIST": re.compile(r'\[.*?\]'),
+}
+
+
+def find_type(value: str) -> Type[TYPE]:
+    for _type, pattern in TYPES.items():
+        if pattern.fullmatch(value):
+            return eval(_type)
 
 
 class TYPE:
