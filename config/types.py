@@ -18,7 +18,7 @@ import re
 from abc import ABC
 from typing import Type, Union
 
-__all__: list[str] = ['INT', 'FLOAT', 'LIST', 'convert']
+__all__: list[str] = ['INT', 'FLOAT', 'BOOL', 'LIST', 'convert']
 
 
 def convert(value: str) -> Type[TYPE]:
@@ -55,6 +55,18 @@ class FLOAT(TYPE):
 
     def convert(self) -> float:
         return float(self.value)
+
+
+class BOOL(TYPE):
+    def __init__(self, value: str) -> None:
+        super(BOOL, self).__init__(
+            value,
+            r'(true|false|yes|no)',
+            re.IGNORECASE,
+        )
+
+    def convert(self) -> bool:
+        return self.value.lower() in ['yes', 'true']
 
 
 class LIST(TYPE):
