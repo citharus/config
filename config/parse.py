@@ -19,7 +19,7 @@ from types import TracebackType
 from typing import IO, Tuple, Optional, Type, AnyStr, Any
 
 from config.types import convert
-from config.utils import remove_comments
+from config.utils import remove_comment
 
 __all__: list[str] = ['Parser']
 
@@ -68,7 +68,7 @@ class Parser:
         current: Optional[dict] = None
 
         for i, line in enumerate(self.file if file is None else file):
-            line: AnyStr = remove_comments(
+            line: AnyStr = remove_comment(
                 line,
                 self._comment_prefixes,
             ).strip()
