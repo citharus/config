@@ -15,10 +15,10 @@
 import re
 from typing import AnyStr, Tuple
 
-__all__: list[str] = ['remove_comments']
+__all__: list[str] = ['remove_comment']
 
 
-def remove_comments(line: AnyStr, prefixes: Tuple[str]) -> AnyStr:
+def remove_comment(line: AnyStr, prefixes: Tuple[str]) -> AnyStr:
     comment: re.Match = re.search(
         rf'({"|".join(prefixes)})',
         line,
