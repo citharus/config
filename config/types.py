@@ -38,7 +38,7 @@ class TYPE(ABC):
             self,
             value: str,
             pattern: str,
-            flags: Union[re.RegexFlag, int],
+            flags: Union[re.RegexFlag, int] = 0,
     ) -> None:
         self.value: str = value
         self.pattern: re.Pattern = re.compile(pattern, flags)
