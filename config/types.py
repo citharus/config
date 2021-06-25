@@ -37,7 +37,7 @@ class TYPE(ABC):
     def __init__(self, value: str) -> None:
         self.value: str = value
 
-    def convert(self) -> Any:
+    def convert(self) -> None:
         pass
 
 
