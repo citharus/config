@@ -16,21 +16,15 @@ from __future__ import annotations
 
 import re
 from abc import ABC
-from typing import Type, Dict, Union
+from typing import Type, Union
 
 __all__: list[str] = ['INT', 'FLOAT', 'LIST', 'convert']
 
-TYPES: Dict[str, re.Pattern] = {
-    "INT": re.compile(r'\d+'),
-    "FLOAT": re.compile(r'\d+\.\d+'),
-    "LIST": re.compile(r'\[.*\]'),
-}
-
 
 def convert(value: str) -> Type[TYPE]:
-    for _type, pattern in TYPES.items():
-        if pattern.fullmatch(value.strip(" ")):
-            return eval(_type)(value).convert()
+    for _type in TYPE.__subclasses__():
+        if _type(value).pattern.fullmatch(value.strip()):
+            return _type(value).convert()
 
 
 class TYPE(ABC):
