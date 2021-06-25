@@ -49,7 +49,7 @@ class TYPE(ABC):
 
 class INT(TYPE):
     def __init__(self, value: str) -> None:
-        super(INT, self).__init__(value)
+        super(INT, self).__init__(value, r'\d+')
 
     def convert(self) -> int:
         return int(self.value)
@@ -57,7 +57,7 @@ class INT(TYPE):
 
 class FLOAT(TYPE):
     def __init__(self, value: str) -> None:
-        super(FLOAT, self).__init__(value)
+        super(FLOAT, self).__init__(value, r'\d+\.\d+')
 
     def convert(self) -> float:
         return float(self.value)
@@ -65,7 +65,7 @@ class FLOAT(TYPE):
 
 class LIST(TYPE):
     def __init__(self, value: str) -> None:
-        super(LIST, self).__init__(value)
+        super(LIST, self).__init__(value, r'\[.*\]')
 
     def convert(self) -> list:
         return [convert(i) for i in self.value[1:-1].split(",")]
