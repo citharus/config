@@ -68,7 +68,7 @@ class BOOL(TYPE):
         )
 
     def convert(self) -> bool:
-        return self.value.lower() in ['yes', 'true']
+        return self.value.lower().strip() in ['true', 'yes']
 
 
 class LIST(TYPE):
