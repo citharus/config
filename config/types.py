@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import re
 from abc import ABC
-from typing import Type, Dict, Any
+from typing import Type, Dict, Union
 
 __all__: list[str] = ['INT', 'FLOAT', 'LIST', 'convert']
 
@@ -34,8 +34,14 @@ def convert(value: str) -> Type[TYPE]:
 
 
 class TYPE(ABC):
-    def __init__(self, value: str) -> None:
+    def __init__(
+            self,
+            value: str,
+            pattern: str,
+            flags: Union[re.RegexFlag, int],
+    ) -> None:
         self.value: str = value
+        self.pattern: re.Pattern = re.compile(pattern, flags)
 
     def convert(self) -> None:
         pass
