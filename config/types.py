@@ -21,10 +21,12 @@ from typing import Type, Union
 __all__: list[str] = ['INT', 'FLOAT', 'BOOL', 'LIST', 'convert']
 
 
-def convert(value: str) -> Type[TYPE]:
+def convert(value: str) -> Union[Type[TYPE], str]:
     for _type in TYPE.__subclasses__():
         if _type(value).pattern.fullmatch(value.strip()):
             return _type(value).convert()
+        else:
+            return value
 
 
 class TYPE(ABC):
