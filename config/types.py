@@ -26,7 +26,7 @@ def convert(value: str) -> Union[Type[TYPE], str]:
         if _type(value).pattern.fullmatch(value.strip()):
             return _type(value).convert()
     else:
-        return value
+        return value[1:] if value.startswith(" ") else value
 
 
 class TYPE(ABC):
