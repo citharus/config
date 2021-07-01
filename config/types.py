@@ -73,7 +73,7 @@ class BOOL(TYPE):
 
 class LIST(TYPE):
     def __init__(self, value: str) -> None:
-        super(LIST, self).__init__(value, r'\[.*\]')
+        super(LIST, self).__init__(value, r'\[[^]]*\]')
 
     def convert(self) -> list:
         return [convert(i) for i in self.value[1:-1].split(",")]
