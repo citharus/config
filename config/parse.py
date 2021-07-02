@@ -67,7 +67,7 @@ class Parser:
             rf'({"|".join(self._comment_prefixes)})',
             line,
         )
-        if comment:
+        if self._inline_comments and comment:
             return line[:comment.start()]
         return line
 
