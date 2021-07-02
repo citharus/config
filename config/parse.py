@@ -75,7 +75,7 @@ class Parser:
             return line[:comment.start()]
         return line
 
-    def to_dict(self, file: Optional[IO] = None) -> dict:
+    def _to_dict(self, file: Optional[IO] = None) -> dict:
         config: dict = self._dict()
         current: Optional[dict] = None
 
@@ -119,6 +119,6 @@ class Parser:
         try:
             if self._namedtuple:
                 return self._to_namedtuple(file)
-            return self.to_dict(file)
+            return self._to_dict(file)
         except TypeError:
             raise NoFileException
