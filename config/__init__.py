@@ -17,7 +17,7 @@ __author__ = 'citharus'
 __license__ = 'Apache License 2.0'
 __copyright__ = 'Copyright 2021-2021 citharus'
 __link__ = 'https://github.com/citharus/config'
-__version__ = '0.0.1a'
+__version__ = '1.0.0'
 
 from collections import namedtuple
 
@@ -30,9 +30,9 @@ VersionInfo = namedtuple(
     'major minor micro releaselevel serial',
 )
 version_info = VersionInfo(
-    major=0,
+    major=1,
     minor=0,
-    micro=1,
-    releaselevel='alpha',
+    micro=0,
+    releaselevel='none',
     serial=0,
 )
