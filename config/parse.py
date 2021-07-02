@@ -17,7 +17,7 @@ from __future__ import annotations
 import re
 from collections import namedtuple
 from types import TracebackType
-from typing import Union, Optional, Type, Any, AnyStr, IO, Tuple
+from typing import Union, Optional, Type, Any, AnyStr, IO, Tuple, Dict
 
 from config.exceptions import NoFileException
 from config.types import convert
@@ -57,7 +57,7 @@ class Parser:
         self._inline_comments: bool = inline_comments
         self._type_conversion: bool = type_conversion
 
-    def __enter__(self) -> Union[namedtuple, dict]:
+    def __enter__(self) -> Union[namedtuple, Dict[str, Any]]:
         return self.parse()
 
     def __exit__(
@@ -77,7 +77,7 @@ class Parser:
             return line[:comment.start()]
         return line
 
-    def _to_dict(self, file: Optional[IO] = None) -> dict:
+    def _to_dict(self, file: Optional[IO] = None) -> Dict[str, Any]:
         config: dict = self._dict()
         current: Optional[dict] = None
 
@@ -104,7 +104,9 @@ class Parser:
         return config
 
     def _to_namedtuple(self, file: Optional[IO] = None) -> namedtuple:
-        config: dict = self._to_dict(self.file if file is None else file)
+        config: Dict[str, Any] = self._to_dict(
+            self.file if file is None else file
+        )
         tuples: list[namedtuple] = [
             namedtuple(
                 section,
@@ -113,7 +115,10 @@ class Parser:
         ]
         return namedtuple("CONFIG", config.keys())(*tuples)
 
-    def parse(self, file: Optional[IO] = None) -> Union[namedtuple, dict]:
+    def parse(
+            self,
+            file: Optional[IO] = None,
+    ) -> Union[namedtuple, Dict[str, Any]]:
         try:
             if self._namedtuple:
                 return self._to_namedtuple(file)
