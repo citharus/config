@@ -85,6 +85,7 @@ class FLOAT(TYPE):
 
 
 class BOOL(TYPE):
+    """The basic type representing a bool."""
     def __init__(self, value: str) -> None:
         super(BOOL, self).__init__(
             value,
