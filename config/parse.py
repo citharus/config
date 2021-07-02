@@ -17,7 +17,7 @@ from __future__ import annotations
 import re
 from collections import namedtuple
 from types import TracebackType
-from typing import IO, Tuple, Optional, Type, AnyStr, Any, Union
+from typing import Union, Optional, Type, Any, AnyStr, IO, Tuple
 
 from config.exceptions import NoFileException
 from config.types import convert
