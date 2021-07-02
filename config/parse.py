@@ -45,7 +45,8 @@ class Parser:
             *,
             delimiters: Tuple[str] = ('=',),
             comment_prefixes: Tuple[str] = ('#',),
-            inline_comments: bool = True,
+            inline_comments: bool = False,
+            type_conversion: bool = False,
     ) -> None:
         self.file: Optional[IO] = file
         self._dict: Type[dict] = _dict
@@ -54,6 +55,7 @@ class Parser:
         self._delimiters: Tuple[str] = delimiters
         self._comment_prefixes: Tuple[str] = comment_prefixes
         self._inline_comments: bool = inline_comments
+        self._type_conversion: bool = type_conversion
 
     def __enter__(self) -> Union[namedtuple, dict]:
         return self.parse()
@@ -98,7 +100,8 @@ class Parser:
                 if not value:
                     current[name] = self._default
                 else:
-                    value = convert(value.strip())
+                    if self._type_conversion:
+                        value = convert(value.strip())
                     current[name] = value
 
         return config
