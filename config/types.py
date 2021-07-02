@@ -67,6 +67,7 @@ class TYPE(ABC):
 
 
 class INT(TYPE):
+    """The basic type representing an integer."""
     def __init__(self, value: str) -> None:
         super(INT, self).__init__(value, r'\d+')
 
