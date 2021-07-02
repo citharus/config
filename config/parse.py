@@ -141,6 +141,12 @@ class Parser:
         NoFileException
             If a file was not specified by the Parser class nor the
             function.
+
+        Examples
+        --------
+        >>> file = open('config.ini', 'r')
+        >>> Parser(file).parse()
+        {'SECTION': {'option': 'value'}}
         """
         try:
             if self._namedtuple:
