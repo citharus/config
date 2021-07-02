@@ -81,7 +81,13 @@ class INT(TYPE):
 
 
 class FLOAT(TYPE):
-    """The basic type representing a float."""
+    """The basic type representing a float.
+
+    Notes
+    -----
+    The regex pattern for the float type is `\d+.\d+`.
+    An acceptable float is '1.1' and not '1.' or '.1'.
+    """
     def __init__(self, value: str) -> None:
         super(FLOAT, self).__init__(value, r'\d+\.\d+')
 
