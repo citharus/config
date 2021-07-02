@@ -21,6 +21,7 @@ __version__ = '0.0.1a'
 
 from collections import namedtuple
 
+from .exceptions import *
 from .parse import *
 from .types import *
 
