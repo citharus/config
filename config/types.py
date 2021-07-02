@@ -115,7 +115,14 @@ class BOOL(TYPE):
 
 
 class LIST(TYPE):
-    """The basic type representing a one dimensional list."""
+    """The basic type representing a one dimensional list.
+
+    Notes
+    -----
+    The regex pattern for the one dimensional list is `\[[^]]*\]`.
+    An acceptable list is "[item, item,item]" but not
+    "[item, item,[item, item]]"
+    """
     def __init__(self, value: str) -> None:
         super(LIST, self).__init__(value, r'\[[^]]*\]')
 
