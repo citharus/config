@@ -83,7 +83,6 @@ class Parser:
 
         for i, line in enumerate(self.file if file is None else file):
             line: AnyStr = self._remove_comment(line).strip()
-
             section: re.Match = self._SECTION.match(line)
             option: re.Match = self._OPTION.match(line)
 
@@ -94,7 +93,6 @@ class Parser:
                 else:
                     current = self._dict()
                     config[name] = current
-
             elif option:
                 name, value = option.group('name', 'value')
                 if not value:
@@ -103,7 +101,6 @@ class Parser:
                     if self._type_conversion:
                         value = convert(value.strip())
                     current[name] = value
-
         return config
 
     def _to_namedtuple(self, file: Optional[IO] = None) -> namedtuple:
