@@ -30,6 +30,19 @@ class Parser:
 
     The Parser class provides a context manager, which requires the `file`
     parameter.
+
+    Parameters
+    ----------
+    file : Optional[IO]
+        The file to parse. If the `file` is not specified the parse method
+        has to be provided with one. When using a context manager the Parse
+        class has to be provided with the `file`.
+    _dict : dict, default=dict
+        The dict used by the Parser to create the config.
+    default : Any
+        The default value, when no value was provided in the config `file`.
+    namedtuple : bool, default=False
+        If the config should be converted to a namedtuple.
     """
     _SECTION: re.Pattern = re.compile(
         r'\[(?P<name>[^]]+)\]',
