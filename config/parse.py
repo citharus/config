@@ -127,6 +127,14 @@ class Parser:
             The file to parse. If the `file` is not specified the `file`
             provided to the Parser class will be used. If parse can not
             find a `file` an exception will be raised.
+
+        Returns
+        -------
+        dict
+            A dict containing all sections with their options.
+        namedtuple
+            A namedtuple containing all sections which are namedtuples
+            them self containing their options.
         """
         try:
             if self._namedtuple:
