@@ -96,7 +96,13 @@ class FLOAT(TYPE):
 
 
 class BOOL(TYPE):
-    """The basic type representing a bool."""
+    """The basic type representing a bool.
+
+    Notes
+    -----
+    A true bool can be either "true" or "yes". A false bool is "false" or
+    "no".
+    """
     def __init__(self, value: str) -> None:
         super(BOOL, self).__init__(
             value,
