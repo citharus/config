@@ -26,6 +26,8 @@ __all__: list[str] = ['Parser']
 
 
 class Parser:
+    """Config parser with comment, type conversion, and namedtuple support.
+    """
     _SECTION: re.Pattern = re.compile(
         r'\[(?P<name>[^]]+)\]',
         re.VERBOSE,
