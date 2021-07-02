@@ -55,7 +55,7 @@ class Parser:
         self._inline_comments: bool = inline_comments
 
     def __enter__(self) -> Union[namedtuple, dict]:
-        return self.to_namedtuple() if self._namedtuple else self.to_dict()
+        return self.parse()
 
     def __exit__(
             self,
