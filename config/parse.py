@@ -43,6 +43,20 @@ class Parser:
         The default value, when no value was provided in the config `file`.
     namedtuple : bool, default=False
         If the config should be converted to a namedtuple.
+
+    Other Parameters
+    ----------------
+    delimiters : tuple[str], default=('=',)
+        A tuple of strings containing the option, value delimiters.
+    comment_prefixes : tuple[str], default=('#',)
+        A tuple of strings containing the comment prefixes.
+    inline_comments : bool, default=False
+        If inline comments are allowed.
+    type_conversion : bool, default=False
+        If basic types should be converted.
+        .. note:: There are 4 basic types: the `str` type which is the
+                  fallback if no type was found, the `int` and `float`
+                  types, and a one dimensional `list`.
     """
     _SECTION: re.Pattern = re.compile(
         r'\[(?P<name>[^]]+)\]',
