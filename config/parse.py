@@ -135,6 +135,12 @@ class Parser:
         namedtuple
             A namedtuple containing all sections which are namedtuples
             them self containing their options.
+
+        Raises
+        ------
+        NoFileException
+            If a file was not specified by the Parser class nor the
+            function.
         """
         try:
             if self._namedtuple:
