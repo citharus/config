@@ -1,4 +1,4 @@
-#  Copyright 2021-2021 citharus
+#  Copyright 2021-present citharus
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
 #  you may not use exceptions.py except in compliance with the License.
