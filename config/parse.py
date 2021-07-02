@@ -62,6 +62,20 @@ class Parser:
     -------
     parse(file)
         Parses the config `file` with the specified options.
+
+    Examples
+    --------
+    >>> with open('config.ini', 'r') as file:
+    >>>     with Parser(file) as config:
+    >>>         print(config)
+    {'SECTION': {'option': 'value'}}
+
+    Parsing the config with namedtuples enabled.
+
+    >>> with open('config.ini', 'r') as file:
+    >>>     with Parser(file, namedtuple=True) as config:
+    >>>         print(config)
+    CONFIG(SECTION=SECTION(option='value'))
     """
     _SECTION: re.Pattern = re.compile(
         r'\[(?P<name>[^]]+)\]',
