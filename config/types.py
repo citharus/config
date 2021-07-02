@@ -22,6 +22,10 @@ __all__: list[str] = ['INT', 'FLOAT', 'BOOL', 'LIST', 'convert']
 
 
 def convert(value: str) -> Union[Type[TYPE], str]:
+    """Convert the value to the respective type.
+
+        If no type was detected the value will remain a string.
+    """
     for _type in TYPE.__subclasses__():
         if _type(value).pattern.fullmatch(value.strip()):
             return _type(value).convert()
