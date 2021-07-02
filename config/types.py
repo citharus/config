@@ -98,6 +98,7 @@ class BOOL(TYPE):
 
 
 class LIST(TYPE):
+    """The basic type representing a one dimensional list."""
     def __init__(self, value: str) -> None:
         super(LIST, self).__init__(value, r'\[[^]]*\]')
 
