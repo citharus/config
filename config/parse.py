@@ -40,7 +40,7 @@ class Parser:
             file: Optional[IO] = None,
             _dict: Type[dict] = dict,
             default: Optional[Any] = None,
-            _namedtuple: bool = False,
+            namedtuple: bool = False,
             *,
             delimiters: Tuple[str] = ('=',),
             comment_prefixes: Tuple[str] = ('#',),
@@ -49,7 +49,7 @@ class Parser:
         self.file: Optional[IO] = file
         self._dict: Type[dict] = _dict
         self._default: Optional[Any] = default
-        self._namedtuple: bool = _namedtuple
+        self._namedtuple: bool = namedtuple
         self._delimiters: Tuple[str] = delimiters
         self._comment_prefixes: Tuple[str] = comment_prefixes
         self._inline_comments: bool = inline_comments
