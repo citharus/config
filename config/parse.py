@@ -103,8 +103,7 @@ class Parser:
         return config
 
     def to_namedtuple(self, file: Optional[IO] = None) -> namedtuple:
-        file: IO = self.file if file is None else file
-        config: dict = self.to_dict(file)
+        config: dict = self.to_dict(self.file if file is None else file)
 
         tuples: list[namedtuple] = [
             namedtuple(
