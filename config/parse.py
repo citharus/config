@@ -122,4 +122,3 @@ class Parser:
             return self.to_dict(file)
         except TypeError:
             raise NoFileException
-
