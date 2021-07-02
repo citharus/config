@@ -15,9 +15,9 @@
 __title__ = 'config'
 __author__ = 'citharus'
 __license__ = 'Apache License 2.0'
-__copyright__ = 'Copyright 2021-2021 citharus'
+__copyright__ = 'Copyright 2021-present citharus'
 __link__ = 'https://github.com/citharus/config'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 from collections import namedtuple
 
