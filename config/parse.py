@@ -57,6 +57,11 @@ class Parser:
         .. note:: There are 4 basic types: the `str` type which is the
                   fallback if no type was found, the `int` and `float`
                   types, and a one dimensional `list`.
+
+    Methods
+    -------
+    parse(file)
+        Parses the config `file` with the specified options.
     """
     _SECTION: re.Pattern = re.compile(
         r'\[(?P<name>[^]]+)\]',
