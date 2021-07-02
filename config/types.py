@@ -67,7 +67,12 @@ class TYPE(ABC):
 
 
 class INT(TYPE):
-    """The basic type representing an integer."""
+    """The basic type representing an integer.
+
+    Notes
+    -----
+    The regex pattern for the integer type is `\d+`.
+    """
     def __init__(self, value: str) -> None:
         super(INT, self).__init__(value, r'\d+')
 
