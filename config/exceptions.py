@@ -16,5 +16,6 @@ __all__: list[str] = ['NoFileException']
 
 
 class NoFileException(Exception):
+    """The exception raised if no `file` was specified."""
     def __init__(self) -> None:
         super(NoFileException, self).__init__('No file was specified.')
