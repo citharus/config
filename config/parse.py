@@ -37,7 +37,7 @@ class Parser:
     def __init__(
             self,
             file: Optional[IO] = None,
-            default_dict: Type[dict] = dict,
+            _dict: Type[dict] = dict,
             default_none: Optional[Any] = None,
             *,
             delimiters: Tuple[str] = ('=',),
@@ -45,7 +45,7 @@ class Parser:
             inline_comments: bool = True,
     ) -> None:
         self.file: Optional[IO] = file
-        self._default_dict: Type[dict] = default_dict
+        self._dict: Type[dict] = _dict
         self._default_none: Optional[Any] = default_none
         self._delimiters: Tuple[str] = delimiters
         self._comment_prefixes: Tuple[str] = comment_prefixes
@@ -72,7 +72,7 @@ class Parser:
         return line
 
     def to_dict(self, file: Optional[IO] = None) -> dict:
-        config: dict = self._default_dict()
+        config: dict = self._dict()
         current: Optional[dict] = None
 
         for i, line in enumerate(self.file if file is None else file):
@@ -86,7 +86,7 @@ class Parser:
                 if name in config:
                     current = config[name]
                 else:
-                    current = self._default_dict()
+                    current = self._dict()
                     config[name] = current
 
             elif option:
