@@ -103,7 +103,7 @@ class Parser:
 
         return config
 
-    def to_namedtuple(self, file: Optional[IO] = None) -> namedtuple:
+    def _to_namedtuple(self, file: Optional[IO] = None) -> namedtuple:
         config: dict = self.to_dict(self.file if file is None else file)
 
         tuples: list[namedtuple] = [
@@ -118,7 +118,7 @@ class Parser:
     def parse(self, file: Optional[IO] = None) -> Union[namedtuple, dict]:
         try:
             if self._namedtuple:
-                return self.to_namedtuple(file)
+                return self._to_namedtuple(file)
             return self.to_dict(file)
         except TypeError:
             raise NoFileException
