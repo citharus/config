@@ -119,7 +119,15 @@ class Parser:
             self,
             file: Optional[IO] = None,
     ) -> Union[namedtuple, Dict[str, Any]]:
-        """Parses the configuration file with the specified options."""
+        """Parses the configuration file with the specified options.
+
+        Parameters
+        ----------
+        file : Optional[IO]
+            The file to parse. If the `file` is not specified the `file`
+            provided to the Parser class will be used. If parse can not
+            find a `file` an exception will be raised.
+        """
         try:
             if self._namedtuple:
                 return self._to_namedtuple(file)
