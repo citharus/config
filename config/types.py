@@ -76,6 +76,7 @@ class INT(TYPE):
 
 
 class FLOAT(TYPE):
+    """The basic type representing a float."""
     def __init__(self, value: str) -> None:
         super(FLOAT, self).__init__(value, r'\d+\.\d+')
 
