@@ -62,9 +62,9 @@ class Parser:
     ) -> None:
         self.file.close()
 
-    def _remove_comment(self, line: AnyStr, prefixes: Tuple[str]) -> AnyStr:
+    def _remove_comment(self, line: AnyStr) -> AnyStr:
         comment: re.Match = re.search(
-            rf'({"|".join(prefixes)})',
+            rf'({"|".join(self._comment_prefixes)})',
             line,
         )
         if comment:
@@ -76,10 +76,7 @@ class Parser:
         current: Optional[dict] = None
 
         for i, line in enumerate(self.file if file is None else file):
-            line: AnyStr = self._remove_comment(
-                line,
-                self._comment_prefixes,
-            ).strip()
+            line: AnyStr = self._remove_comment(line).strip()
 
             section: re.Match = self._SECTION.match(line)
             option: re.Match = self._OPTION.match(line)
