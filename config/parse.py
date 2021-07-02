@@ -114,3 +114,8 @@ class Parser:
         ]
 
         return namedtuple("CONFIG", config.keys())(*tuples)
+
+    def parse(self, file: Optional[IO] = None) -> Union[namedtuple, dict]:
+        if self._namedtuple:
+            return self.to_namedtuple(file)
+        return self.to_dict(file)
