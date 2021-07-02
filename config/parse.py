@@ -26,7 +26,10 @@ __all__: list[str] = ['Parser']
 
 
 class Parser:
-    """Config parser with comment, type conversion, and namedtuple support.
+    """A simple config parser with basic types and namedtuple support.
+
+    The Parser class provides a context manager, which requires the `file`
+    parameter.
     """
     _SECTION: re.Pattern = re.compile(
         r'\[(?P<name>[^]]+)\]',
