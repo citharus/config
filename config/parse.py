@@ -17,6 +17,7 @@ from __future__ import annotations
 import re
 from types import TracebackType
 from typing import IO, Tuple, Optional, Type, AnyStr, Any
+from collections import namedtuple
 
 from config.types import convert
 
@@ -52,7 +53,7 @@ class Parser:
         self._inline_comments: bool = inline_comments
 
     def __enter__(self) -> dict:
-        return self.to_dict()
+        return self.to_namedtuple()
 
     def __exit__(
             self,
@@ -98,3 +99,16 @@ class Parser:
                     current[name] = value
 
         return config
+
+    def to_namedtuple(self, file: Optional[IO] = None) -> namedtuple:
+        file: IO = self.file if file is None else file
+        config: dict = self.to_dict(file)
+
+        tuples: list[namedtuple] = [
+            namedtuple(
+                section,
+                options.keys(),
+            )(*options.values()) for section, options in config.items()
+        ]
+
+        return namedtuple("CONFIG", config.keys())(*tuples)
