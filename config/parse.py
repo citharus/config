@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import re
 from types import TracebackType
-from typing import IO, Tuple, Optional, Type, AnyStr, Any
+from typing import IO, Tuple, Optional, Type, AnyStr, Any, Union
 from collections import namedtuple
 
 from config.types import convert
@@ -54,8 +54,8 @@ class Parser:
         self._comment_prefixes: Tuple[str] = comment_prefixes
         self._inline_comments: bool = inline_comments
 
-    def __enter__(self) -> dict:
-        return self.to_namedtuple()
+    def __enter__(self) -> Union[namedtuple, dict]:
+        return self.to_namedtuple() if self._namedtuple else self.to_dict()
 
     def __exit__(
             self,
