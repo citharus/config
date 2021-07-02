@@ -30,6 +30,7 @@ def convert(value: str) -> Union[Type[TYPE], str]:
 
 
 class TYPE(ABC):
+    """The abstract base class for the basic types."""
     def __init__(
             self,
             value: str,
