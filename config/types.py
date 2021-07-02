@@ -40,6 +40,13 @@ class TYPE(ABC):
         The `pattern` defining the basic type.
     flags : Union[re.RegexFlag, int], optional
         The regex `flags` used for the final `pattern`.
+
+    Attributes
+    ----------
+    value : str
+        The `value` to check against the type and to eventually covert.
+    pattern : re.Pattern
+        The compiles regex pattern containing the `pattern` and `flags`.
     """
     def __init__(
             self,
