@@ -104,7 +104,7 @@ class Parser:
         return config
 
     def _to_namedtuple(self, file: Optional[IO] = None) -> namedtuple:
-        config: dict = self.to_dict(self.file if file is None else file)
+        config: dict = self._to_dict(self.file if file is None else file)
 
         tuples: list[namedtuple] = [
             namedtuple(
