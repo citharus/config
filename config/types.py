@@ -47,6 +47,11 @@ class TYPE(ABC):
         The `value` to check against the type and to eventually covert.
     pattern : re.Pattern
         The compiles regex pattern containing the `pattern` and `flags`.
+
+    Methods
+    -------
+    convert()
+        Abstract method for type conversion.
     """
     def __init__(
             self,
