@@ -20,6 +20,7 @@ from typing import IO, Tuple, Optional, Type, AnyStr, Any, Union
 from collections import namedtuple
 
 from config.types import convert
+from config.exceptions import NoFileException
 
 __all__: list[str] = ['Parser']
 
@@ -115,6 +116,10 @@ class Parser:
         return namedtuple("CONFIG", config.keys())(*tuples)
 
     def parse(self, file: Optional[IO] = None) -> Union[namedtuple, dict]:
-        if self._namedtuple:
-            return self.to_namedtuple(file)
-        return self.to_dict(file)
+        try:
+            if self._namedtuple:
+                return self.to_namedtuple(file)
+            return self.to_dict(file)
+        except TypeError:
+            raise NoFileException
+
