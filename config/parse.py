@@ -47,7 +47,7 @@ class Parser:
     ) -> None:
         self.file: Optional[IO] = file
         self._dict: Type[dict] = _dict
-        self.default: Optional[Any] = default
+        self._default: Optional[Any] = default
         self._delimiters: Tuple[str] = delimiters
         self._comment_prefixes: Tuple[str] = comment_prefixes
         self._inline_comments: bool = inline_comments
@@ -93,7 +93,7 @@ class Parser:
             elif option:
                 name, value = option.group('name', 'value')
                 if not value:
-                    current[name] = self.default
+                    current[name] = self._default
                 else:
                     value = convert(value.strip())
                     current[name] = value
