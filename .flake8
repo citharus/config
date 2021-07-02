@@ -4,4 +4,4 @@ ignore = F821, F405, F403
 per-file-ignores =
     __init__.py: F401
     types.py: W605
-max-complexity = 5
+max-complexity = 10
