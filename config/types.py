@@ -30,7 +30,17 @@ def convert(value: str) -> Union[Type[TYPE], str]:
 
 
 class TYPE(ABC):
-    """The abstract base class for the basic types."""
+    """The abstract base class for the basic types.
+
+    Parameters
+    ----------
+    value : str
+        The `value` to check against the type and to eventually covert.
+    pattern : str
+        The `pattern` defining the basic type.
+    flags : Union[re.RegexFlag, int], optional
+        The regex `flags` used for the final `pattern`.
+    """
     def __init__(
             self,
             value: str,
