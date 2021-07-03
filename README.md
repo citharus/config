@@ -1,5 +1,5 @@
 <p align="center"><img src=".assets/logo.png" height="100"></p>
-<h1 align="center">config</h1>
+<h1 align="center">CONFIG</h1>
 
 The *config* package provides a simple config parser with easier accessability.
 
@@ -38,4 +38,10 @@ The **Parser** with *type conversion* enabled:
             print(config)
 
 {'SECTION': {'str': 'string', 'none': None, 'int': 1, 'float': 1.1, 'bool': True}}
+```
+
+## Installation
+```console
+git clone https://github.com/citharus/config.git && cd config
+sudo python setup.py install
 ```
