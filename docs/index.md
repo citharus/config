@@ -7,10 +7,10 @@ context manager and a variety of options. For easier accessibility, the
 [**Parser**](#Parser) has the option to convert the parsed config to a
 nested namedtuple which contains the sections and their options.
 
-## Parser
+# Parser
 The simple parser of the *config package*.
 
-### Positional parameters
+## Positional parameters
 **file**: file object, *optional*  
 > The file to parse. If the *file* is not specified the parse method
 > has to be provided with one. When using a context manager the Parse
@@ -25,7 +25,7 @@ The simple parser of the *config package*.
 **namedtuple**: bool, *default=False*  
 > If the config should be converted to a *namedtuple*.
 
-### Keyword parameters
+## Keyword parameters
 **delimiters**: tuple[str], *default=('=',)*  
 > A tuple of strings containing the option-value *delimiters*.
 
@@ -38,15 +38,15 @@ The simple parser of the *config package*.
 **type_conversion**: bool, *default=False*  
 > If basic types should be converted.
 
-### Methods
-#### parse
-> ##### Parameters
+## Methods
+### parse
+> ### Parameters
 > **file**: file object, *optional*  
 > The file to parse. If the *file* is not specified the *file*
 > provided to the [**Parser**](#Parser) will be used. If parse can not
 > find a *file* an exception will be raised.
 >
-> ##### Returns
+> ### Returns
 > **dict**  
 > A dict containing all sections with their options.
 >
@@ -54,7 +54,7 @@ The simple parser of the *config package*.
 > A namedtuple containing all sections which are namedtuples
 > them self containing their options.
 >
-> ##### Raises
+> ### Raises
 > **NoFileException**  
 > If a file was not specified by the [**Parser**](#Parser) nor the
 > function.
