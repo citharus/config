@@ -58,8 +58,3 @@ The simple parser of the *config package*.
 > **NoFileException**  
 > If a file was not specified by the [**Parser**](#Parser) nor the
 > function.
-```pythonstub
->>> file = open('config.ini', 'r')
->>> Parser(file).parse()
-{'SECTION': {'option': 'value'}}
-```
