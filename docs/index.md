@@ -64,12 +64,10 @@ Using the [**parse**](#parse) method directly:
 ```python
 with open('config.ini', 'r') as file:
     print(Parser(file).parse())
-{'SECTION': {'option': 'value'}}
 ```
 Using the context manager:
 ```python
 with open('config.ini', 'r') as file:
     with Parser(file) as config:
         print(config)
-{'SECTION': {'option': 'value'}}
 ```
