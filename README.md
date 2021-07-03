@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/logo.png" height="100"></p>
+<p align="center"><img src="docs/logo.png" height="150"></p>
 <h1 align="center">CONFIG</h1>
 
 The *config* package provides a simple config parser with easier accessibility.
