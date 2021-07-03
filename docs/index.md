@@ -40,13 +40,13 @@ The simple parser of the *config package*.
 
 ### Methods
 #### parse
-> ###### Parameters
+> ##### Parameters
 > **file**: file object, *optional*  
 > The file to parse. If the *file* is not specified the *file*
 > provided to the [**Parser**](#Parser) will be used. If parse can not
 > find a *file* an exception will be raised.
 >
-> ###### Returns
+> ##### Returns
 > **dict**  
 > A dict containing all sections with their options.
 >
@@ -54,7 +54,7 @@ The simple parser of the *config package*.
 > A namedtuple containing all sections which are namedtuples
 > them self containing their options.
 >
-> ###### Raises
+> ##### Raises
 > **NoFileException**  
 > If a file was not specified by the [**Parser**](#Parser) nor the
 > function.
