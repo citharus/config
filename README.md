@@ -39,3 +39,9 @@ The **Parser** with *type conversion* enabled:
 
 {'SECTION': {'str': 'string', 'none': None, 'int': 1, 'float': 1.1, 'bool': True}}
 ```
+
+## Installation
+```console
+git clone https://github.com/citharus/config.git && cd config
+sudo python setup.py install
+```
