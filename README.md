@@ -8,10 +8,7 @@ For easier accessibility, the **Parser** has the option to convert the parsed co
 
 ## Installation
 ```console
-git clone https://github.com/citharus/config.git && cd config
-```
-```console
-sudo python setup.py install
+pip install git+https://github.com/citharus/config.git
 ```
 
 ## Example
