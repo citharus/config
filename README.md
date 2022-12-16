@@ -24,13 +24,14 @@ The **Parser** with the default settings:
 ```
 
 The **Parser** with *namedtuples* enabled:
-```python
->>> from config import Parser
 
->>> with open("config.ini") as file:
-        with Parser(file, namedtuple=True) as config:
-            print(config)
-            
+```python
+>> > from config import Parser
+
+>> > with open("config.ini") as file:
+    with Parser(file, is_namedtuple=True) as config:
+        print(config)
+
 CONFIG(SECTION=SECTION(str='string', none=None, int='1', float='1.1', bool='yes'))
 ```
 

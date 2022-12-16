@@ -41,7 +41,7 @@ class Parser:
         The dict used by the Parser to create the config.
     default : Any
         The default value, when no value was provided in the config `file`.
-    namedtuple : bool, default=False
+    is_namedtuple : bool, default=False
         If the config should be converted to a namedtuple.
 
     Other Parameters
@@ -73,7 +73,7 @@ class Parser:
     Parsing the config with namedtuples enabled.
 
     >>> with open('config.ini', 'r') as file:
-    >>>     with Parser(file, namedtuple=True) as config:
+    >>>     with Parser(file, is_namedtuple=True) as config:
     >>>         print(config)
     CONFIG(SECTION=SECTION(option='value'))
     """
@@ -93,7 +93,7 @@ class Parser:
             file: Optional[IO] = None,
             _dict: Type[dict] = dict,
             default: Optional[Any] = None,
-            namedtuple: bool = False,
+            is_namedtuple: bool = False,
             *,
             delimiters: Tuple[str] = ('=',),
             comment_prefixes: Tuple[str] = ('#',),
@@ -103,7 +103,7 @@ class Parser:
         self.file: Optional[IO] = file
         self._dict: Type[dict] = _dict
         self._default: Optional[Any] = default
-        self._namedtuple: bool = namedtuple
+        self._namedtuple: bool = is_namedtuple
         self._delimiters: Tuple[str] = delimiters
         self._comment_prefixes: Tuple[str] = comment_prefixes
         self._inline_comments: bool = inline_comments
