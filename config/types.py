@@ -70,11 +70,11 @@ class TYPE(ABC):
 
 
 class INT(TYPE):
-    """The basic type representing an integer.
+    r"""The basic type representing an integer.
 
     Notes
     -----
-    The regex pattern for the integer type is `\d+`.
+    The regex pattern for the integer type is `\\d+`.
     """
     def __init__(self, value: str) -> None:
         super(INT, self).__init__(value, r'\d+')
@@ -84,11 +84,11 @@ class INT(TYPE):
 
 
 class FLOAT(TYPE):
-    """The basic type representing a float.
+    r"""The basic type representing a float.
 
     Notes
     -----
-    The regex pattern for the float type is `\d+.\d+`.
+    The regex pattern for the float type is '\\d+.\\d+'.
     An acceptable float is '1.1' and not '1.' or '.1'.
     """
     def __init__(self, value: str) -> None:
@@ -118,11 +118,11 @@ class BOOL(TYPE):
 
 
 class LIST(TYPE):
-    """The basic type representing a one dimensional list.
+    r"""The basic type representing a one dimensional list.
 
     Notes
     -----
-    The regex pattern for the one dimensional list is `\[[^]]*\]`.
+    The regex pattern for the one dimensional list is '\\[[^]]*\\]'.
     An acceptable list is "[item, item,item]" but not
     "[item, item,[item, item]]"
     """
