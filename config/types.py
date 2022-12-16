@@ -66,8 +66,8 @@ class TYPE(ABC):
         self.value: str = value
         self.pattern: re.Pattern = re.compile(pattern, flags)
 
-    def convert(self) -> None:
-        pass
+    def convert(self):
+        raise NotImplemented
 
 
 class INT(TYPE):
