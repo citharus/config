@@ -18,13 +18,13 @@ import re
 from abc import ABC
 from typing import Type, Union
 
-__all__: list[str] = ['INT', 'FLOAT', 'BOOL', 'LIST', 'convert']
+__all__: list[str] = ["INT", "FLOAT", "BOOL", "LIST", "convert"]
 
 
 def convert(value: str) -> Union[Type[TYPE], str]:
     """Convert the value to the respective type.
 
-        If no type was detected the value will remain a string.
+    If no type was detected the value will remain a string.
     """
     for _type in TYPE.__subclasses__():
         if _type(value).pattern.fullmatch(value.strip()):
@@ -57,11 +57,12 @@ class TYPE(ABC):
     convert()
         Abstract method for type conversion.
     """
+
     def __init__(
-            self,
-            value: str,
-            pattern: str,
-            flags: Union[re.RegexFlag, int] = 0,
+        self,
+        value: str,
+        pattern: str,
+        flags: Union[re.RegexFlag, int] = 0,
     ) -> None:
         self.value: str = value
         self.pattern: re.Pattern = re.compile(pattern, flags)
@@ -77,8 +78,9 @@ class INT(TYPE):
     -----
     The regex pattern for the integer type is `\d+`.
     """
+
     def __init__(self, value: str) -> None:
-        super(INT, self).__init__(value, r'\d+')
+        super(INT, self).__init__(value, r"\d+")
 
     def convert(self) -> int:
         return int(self.value)
@@ -92,8 +94,9 @@ class FLOAT(TYPE):
     The regex pattern for the float type is `\d+.\d+`.
     An acceptable float is '1.1' and not '1.' or '.1'.
     """
+
     def __init__(self, value: str) -> None:
-        super(FLOAT, self).__init__(value, r'\d+\.\d+')
+        super(FLOAT, self).__init__(value, r"\d+\.\d+")
 
     def convert(self) -> float:
         return float(self.value)
@@ -107,15 +110,16 @@ class BOOL(TYPE):
     A true bool can be either "true" or "yes". A false bool is "false" or
     "no".
     """
+
     def __init__(self, value: str) -> None:
         super(BOOL, self).__init__(
             value,
-            r'(true|false|yes|no)',
+            r"(true|false|yes|no)",
             re.IGNORECASE,
         )
 
     def convert(self) -> bool:
-        return self.value.lower().strip() in ['true', 'yes']
+        return self.value.lower().strip() in ["true", "yes"]
 
 
 class LIST(TYPE):
@@ -127,8 +131,9 @@ class LIST(TYPE):
     An acceptable list is "[item, item,item]" but not
     "[item, item,[item, item]]"
     """
+
     def __init__(self, value: str) -> None:
-        super(LIST, self).__init__(value, r'\[[^]]*\]')
+        super(LIST, self).__init__(value, r"\[[^]]*\]")
 
     def convert(self) -> list:
         return [convert(i) for i in self.value[1:-1].split(",")]
