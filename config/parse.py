@@ -132,7 +132,7 @@ class Parser:
         config: dict = self._dict()
         current: Optional[dict] = None
 
-        for i, line in enumerate(self.file if file is None else file):
+        for _, line in enumerate(self.file if file is None else file):
             line: AnyStr = self._remove_comment(line).strip()
             section: re.Match = self._SECTION.match(line)
             option: re.Match = self._OPTION.match(line)
