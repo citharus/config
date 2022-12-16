@@ -22,7 +22,7 @@ from typing import Union, Optional, Type, Any, AnyStr, IO, Tuple, Dict
 from config.exceptions import NoFileException
 from config.types import convert
 
-__all__: list[str] = ['Parser']
+__all__: list[str] = ["Parser"]
 
 
 class Parser:
@@ -77,27 +77,28 @@ class Parser:
     >>>         print(config)
     CONFIG(SECTION=SECTION(option='value'))
     """
+
     _SECTION: re.Pattern = re.compile(
-        r'\[(?P<name>[^]]+)\]',
+        r"\[(?P<name>[^]]+)\]",
         re.VERBOSE,
     )
 
     _OPTION: re.Pattern = re.compile(
-        r'(?P<name>.*?)\s*(=)\s*(?P<value>.*)$',
+        r"(?P<name>.*?)\s*(=)\s*(?P<value>.*)$",
         re.VERBOSE,
     )
 
     def __init__(
-            self,
-            file: Optional[IO] = None,
-            _dict: Type[dict] = dict,
-            default: Optional[Any] = None,
-            namedtuple: bool = False,
-            *,
-            delimiters: Tuple[str] = ('=',),
-            comment_prefixes: Tuple[str] = ('#',),
-            inline_comments: bool = False,
-            type_conversion: bool = False,
+        self,
+        file: Optional[IO] = None,
+        _dict: Type[dict] = dict,
+        default: Optional[Any] = None,
+        namedtuple: bool = False,
+        *,
+        delimiters: Tuple[str] = ("=",),
+        comment_prefixes: Tuple[str] = ("#",),
+        inline_comments: bool = False,
+        type_conversion: bool = False,
     ) -> None:
         self.file: Optional[IO] = file
         self._dict: Type[dict] = _dict
@@ -112,10 +113,10 @@ class Parser:
         return self.parse()
 
     def __exit__(
-            self,
-            exc_type: Optional[Type[BaseException]],
-            exc_value: Optional[BaseException],
-            exc_traceback: Optional[TracebackType],
+        self,
+        exc_type: Optional[Type[BaseException]],
+        exc_value: Optional[BaseException],
+        exc_traceback: Optional[TracebackType],
     ) -> None:
         self.file.close()
 
@@ -125,7 +126,7 @@ class Parser:
             line,
         )
         if self._inline_comments and comment:
-            return line[:comment.start()]
+            return line[: comment.start()]
         return line
 
     def _to_dict(self, file: Optional[IO] = None) -> Dict[str, Any]:
@@ -138,14 +139,14 @@ class Parser:
             option: re.Match = self._OPTION.match(line)
 
             if section:
-                name = section.group('name')
+                name = section.group("name")
                 if name in config:
                     current = config[name]
                 else:
                     current = self._dict()
                     config[name] = current
             elif option:
-                name, value = option.group('name', 'value')
+                name, value = option.group("name", "value")
                 if not value:
                     current[name] = self._default
                 else:
@@ -155,20 +156,19 @@ class Parser:
         return config
 
     def _to_namedtuple(self, file: Optional[IO] = None) -> namedtuple:
-        config: Dict[str, Any] = self._to_dict(
-            self.file if file is None else file
-        )
+        config: Dict[str, Any] = self._to_dict(self.file if file is None else file)
         tuples: list[namedtuple] = [
             namedtuple(
                 section,
                 options.keys(),
-            )(*options.values()) for section, options in config.items()
+            )(*options.values())
+            for section, options in config.items()
         ]
         return namedtuple("CONFIG", config.keys())(*tuples)
 
     def parse(
-            self,
-            file: Optional[IO] = None,
+        self,
+        file: Optional[IO] = None,
     ) -> Union[namedtuple, Dict[str, Any]]:
         """Parses the configuration file with the specified options.
 
