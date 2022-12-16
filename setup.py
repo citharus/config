@@ -17,11 +17,11 @@ from distutils.core import setup
 from config import __version__, __author__, __link__
 
 setup(
-    name='config',
+    name="config",
     version=__version__,
-    description='A simple config parser for Python, featuring basic type '
-                'conversion & accessibility through attributes.',
+    description="A simple config parser for Python, featuring basic type "
+    "conversion & accessibility through attributes.",
     author=__author__,
     url=__link__,
-    packages=['config'],
+    packages=["config"],
 )

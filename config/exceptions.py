@@ -12,10 +12,11 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-__all__: list[str] = ['NoFileException']
+__all__: list[str] = ["NoFileException"]
 
 
 class NoFileException(Exception):
     """The exception raised if no `file` was specified."""
+
     def __init__(self) -> None:
-        super(NoFileException, self).__init__('No file was specified.')
+        super(NoFileException, self).__init__("No file was specified.")
