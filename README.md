@@ -1,10 +1,15 @@
-<p align="center"><img src="docs/logo.png" height="100"></p>
+<p align="center"><img src="docs/logo.png" height="150"></p>
 <h1 align="center">CONFIG</h1>
 
 The *config* package provides a simple config parser with easier accessibility.
 
 The **Parser** delivered with the *config* package provides a context manager and a variety of options.
 For easier accessibility, the **Parser** has the option to convert the parsed config to a nested *namedtuple* which contains the sections and their options.
+
+## Installation
+```console
+pip install git+https://github.com/citharus/config.git
+```
 
 ## Example
 The **Parser** with the default settings:
@@ -38,10 +43,4 @@ The **Parser** with *type conversion* enabled:
             print(config)
 
 {'SECTION': {'str': 'string', 'none': None, 'int': 1, 'float': 1.1, 'bool': True}}
-```
-
-## Installation
-```console
-git clone https://github.com/citharus/config.git && cd config
-sudo python setup.py install
 ```
