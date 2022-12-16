@@ -77,6 +77,7 @@ class Parser:
     >>>         print(config)
     CONFIG(SECTION=SECTION(option='value'))
     """
+
     _SECTION: re.Pattern = re.compile(
         r'\[(?P<name>[^]]+)\]',
         re.VERBOSE,
@@ -199,6 +200,7 @@ class Parser:
         >>> Parser(file).parse()
         {'SECTION': {'option': 'value'}}
         """
+
         try:
             if self._namedtuple:
                 return self._to_namedtuple(file)
